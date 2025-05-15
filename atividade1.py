@@ -65,6 +65,22 @@ class DynamicIntArray:
 
 
 
+    def remove(self,value):
+         lista = self.data
+         i= 0
+         while i < self.size:
+            if lista[i] == value:
+                for j in range(i, len(lista)-1):
+                                    lista[j] = lista[j+1]
+            # Reduz o tamanho da lista (simulando um pop())
+                lista = lista[:-1]
+            else:
+                i += 1
+         return lista
+
+              
+                
+    
     # remove_at
 
     # remover elemento no index passado.
