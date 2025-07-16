@@ -1,3 +1,5 @@
+
+from fila.fila import Queue
 class Node:
     def __init__(self, data):
         self.data = data
@@ -20,7 +22,21 @@ class BinaryTree:
         print(node)
         if node.right:
             self.simetric_traversal(node.right)
-   
+
+   # Percurso em nível (Level-order/Breadth-first)
+    def levelorder_traversal(self, node=None):
+        q = Queue()
+        q.enqueue(node)
+
+        while not q.is_empty():
+            node = q.dequeue()
+            print(node)
+
+            if node.left:
+                q.enqueue(node.left)
+            if node.right:
+                q.enqueue(node.right)
+        
     def postorder_traversal(self, node=None):
         if node is None:
             node = self.root
@@ -33,12 +49,16 @@ class BinaryTree:
     def height(self, node=None):
         if node is None:
             node = self.root
-        if node is None:
-            return 0  
-            
-        left_height = self.height(node.left) if node.left else 0
-        right_height = self.height(node.right) if node.right else 0
-        return 1 + max(left_height, right_height)
+        hleft = 0
+        hright = 0
+        if node.left:
+            hleft = self.height(node.left)
+        if node.right:
+            hright = self.height(node.right)
+        if hright > hleft:
+            return hright + 1
+        return hleft + 1
+
 
         
 

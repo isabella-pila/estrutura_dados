@@ -93,15 +93,17 @@ class HashTable:
 
     def _hash(self, key):
         #COLOQUE SEU CÓDIGO AQUI
+        print(f"_hash {key % self.buckets.capacity}")
         return key % self.buckets.capacity
+    
 
     def insert(self, key):
-        #COLOQUE SEU CÓDIGO AQUI
         index = self._hash(key)
-        bucket = self.buckets.get(index)
-        if not bucket.search(key):
-            bucket.append(key)
-
+        existing = self.buckets.get(index)
+        if existing is None:
+            self.buckets.set(index, key)
+        else:
+            print(f"Não é possível inserir,já tem elemento em {index}")
     def search(self, key):
         #COLOQUE SEU CÓDIGO AQUI
         index = self._hash(key)
@@ -111,20 +113,27 @@ class HashTable:
         else:
             return None
 
+    
     def remove(self, key):
-        #COLOQUE SEU CÓDIGO AQUI
-        pass
+        index = self._hash(key)
+        if self.buckets.get(index) == key:
+            self.buckets.set(index, None)
+            return True
+        return False
+    
     def __str__(self):
         lines = []
         for i in range(self.buckets.capacity):
             bucket = self.buckets.get(i)
             lines.append(f"{i}: {bucket}")
         return "\n".join(lines)
+    
 
 
 if __name__ == "__main__":
+    
     ht = HashTable()
-
+    
     # Inserção um a um
     ht.insert(33)
     ht.insert(14)

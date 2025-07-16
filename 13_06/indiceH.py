@@ -6,6 +6,7 @@ def indice_h_linear(citacoes):
     return len(citacoes)
 
 
+
 def indice_h_binaria(citacoes):
     inicio = 0
     fim = len(citacoes) - 1
@@ -18,7 +19,8 @@ def indice_h_binaria(citacoes):
     return inicio
 
 
-citacoes = [10, 8, 5, 4, 3]
+citacoes = [10, 8, 5, 4,2]
+
 
 print("Índice-h (Busca Linear):", indice_h_linear(citacoes))
 print("Índice-h (Busca Binária):", indice_h_binaria(citacoes))
